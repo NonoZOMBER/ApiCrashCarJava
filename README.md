@@ -22,8 +22,8 @@ The development of the Rest API is finished, therefore here is the information o
 | Vehicles Part  | `/new/vehiculo-parte`  | `/update/vehiculo-parte/{id}`  | `/id/vehiculo-parte/{id}`  |
 | Secure Vehicles   | `/new/vehiculo-seguro`  | `/update/vehiculo-seguro/{id}`  | `/id/vehiculo-seguro/{id}`  |
 | Drivers  | `/new/conductor`  | `/update/conductor/{id}`  | `/id/conductor/{id}`  |
-| Parts  | `/new/parte`  |  `/update/parte/{id}` | `/id/parte/{id}` or `/list/partes/{dni}
-| Secure  | `/new/seguro`  | `/update/seguro/{id}`  | `/id/seguro/{id}` or `/list/seguros/{dni} |
+| Parts  | `/new/parte`  |  `/update/parte/{id}` | `/id/parte/{id}` or `/list/partes/{dni}`
+| Secure  | `/new/seguro`  | `/update/seguro/{id}`  | `/id/seguro/{id}` or `/list/seguros/{dni}` |
 
 
 The default port that is set in `application.properties` is 8000 and the host is 0.0.0.0, also the database that this ApiRest consumes is PostgreSQL.
