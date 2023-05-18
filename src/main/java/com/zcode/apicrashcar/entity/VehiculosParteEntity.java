@@ -3,33 +3,30 @@ package com.zcode.apicrashcar.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "vehiculos_parte", schema = "public", catalog = "BD_CrashCar")
+@Table(name = "vehiculos_parte", schema = "public")
 public class VehiculosParteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id_vehiculo_parte", nullable = false)
     private int idVehiculoParte;
     @Basic
-    @Column(name = "id_vehiculo", nullable = false)
-    private int idVehiculo;
-    @Basic
-    @Column(name = "id_seguro", nullable = false)
-    private int idSeguro;
-    @Basic
-    @Column(name = "circunstancias", nullable = false, length = -1)
+    @Column(name = "circunstancias", nullable = true, length = -1)
     private String circunstancias;
     @Basic
-    @Column(name = "remolque", nullable = true)
-    private Boolean remolque;
-    @Basic
-    @Column(name = "matricula_remolque", nullable = true, length = -1)
-    private String matriculaRemolque;
-    @Basic
-    @Column(name = "pais_matricula_remolque", nullable = true, length = -1)
-    private String paisMatriculaRemolque;
-    @Basic
-    @Column(name = "punto_choque", nullable = false, length = -1)
+    @Column(name = "punto_choque", nullable = true, length = -1)
     private String puntoChoque;
+    @Basic
+    @Column(name = "asegurado", nullable = true, length = -1)
+    private String asegurado;
+    @Basic
+    @Column(name = "aseguradora", nullable = true, length = -1)
+    private String aseguradora;
+    @Basic
+    @Column(name = "vehiculo", nullable = true, length = -1)
+    private String vehiculo;
+    @Basic
+    @Column(name = "observaciones", nullable = true, length = -1)
+    private String observaciones;
 
     public int getIdVehiculoParte() {
         return idVehiculoParte;
@@ -37,22 +34,6 @@ public class VehiculosParteEntity {
 
     public void setIdVehiculoParte(int idVehiculoParte) {
         this.idVehiculoParte = idVehiculoParte;
-    }
-
-    public int getIdVehiculo() {
-        return idVehiculo;
-    }
-
-    public void setIdVehiculo(int idVehiculo) {
-        this.idVehiculo = idVehiculo;
-    }
-
-    public int getIdSeguro() {
-        return idSeguro;
-    }
-
-    public void setIdSeguro(int idSeguro) {
-        this.idSeguro = idSeguro;
     }
 
     public String getCircunstancias() {
@@ -63,36 +44,44 @@ public class VehiculosParteEntity {
         this.circunstancias = circunstancias;
     }
 
-    public Boolean getRemolque() {
-        return remolque;
-    }
-
-    public void setRemolque(Boolean remolque) {
-        this.remolque = remolque;
-    }
-
-    public String getMatriculaRemolque() {
-        return matriculaRemolque;
-    }
-
-    public void setMatriculaRemolque(String matriculaRemolque) {
-        this.matriculaRemolque = matriculaRemolque;
-    }
-
-    public String getPaisMatriculaRemolque() {
-        return paisMatriculaRemolque;
-    }
-
-    public void setPaisMatriculaRemolque(String paisMatriculaRemolque) {
-        this.paisMatriculaRemolque = paisMatriculaRemolque;
-    }
-
     public String getPuntoChoque() {
         return puntoChoque;
     }
 
     public void setPuntoChoque(String puntoChoque) {
         this.puntoChoque = puntoChoque;
+    }
+
+    public String getAsegurado() {
+        return asegurado;
+    }
+
+    public void setAsegurado(String asegurado) {
+        this.asegurado = asegurado;
+    }
+
+    public String getAseguradora() {
+        return aseguradora;
+    }
+
+    public void setAseguradora(String aseguradora) {
+        this.aseguradora = aseguradora;
+    }
+
+    public String getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(String vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
     @Override
@@ -103,16 +92,14 @@ public class VehiculosParteEntity {
         VehiculosParteEntity that = (VehiculosParteEntity) o;
 
         if (idVehiculoParte != that.idVehiculoParte) return false;
-        if (idVehiculo != that.idVehiculo) return false;
-        if (idSeguro != that.idSeguro) return false;
         if (circunstancias != null ? !circunstancias.equals(that.circunstancias) : that.circunstancias != null)
             return false;
-        if (remolque != null ? !remolque.equals(that.remolque) : that.remolque != null) return false;
-        if (matriculaRemolque != null ? !matriculaRemolque.equals(that.matriculaRemolque) : that.matriculaRemolque != null)
-            return false;
-        if (paisMatriculaRemolque != null ? !paisMatriculaRemolque.equals(that.paisMatriculaRemolque) : that.paisMatriculaRemolque != null)
-            return false;
         if (puntoChoque != null ? !puntoChoque.equals(that.puntoChoque) : that.puntoChoque != null) return false;
+        if (asegurado != null ? !asegurado.equals(that.asegurado) : that.asegurado != null) return false;
+        if (aseguradora != null ? !aseguradora.equals(that.aseguradora) : that.aseguradora != null) return false;
+        if (vehiculo != null ? !vehiculo.equals(that.vehiculo) : that.vehiculo != null) return false;
+        if (observaciones != null ? !observaciones.equals(that.observaciones) : that.observaciones != null)
+            return false;
 
         return true;
     }
@@ -120,13 +107,12 @@ public class VehiculosParteEntity {
     @Override
     public int hashCode() {
         int result = idVehiculoParte;
-        result = 31 * result + idVehiculo;
-        result = 31 * result + idSeguro;
         result = 31 * result + (circunstancias != null ? circunstancias.hashCode() : 0);
-        result = 31 * result + (remolque != null ? remolque.hashCode() : 0);
-        result = 31 * result + (matriculaRemolque != null ? matriculaRemolque.hashCode() : 0);
-        result = 31 * result + (paisMatriculaRemolque != null ? paisMatriculaRemolque.hashCode() : 0);
         result = 31 * result + (puntoChoque != null ? puntoChoque.hashCode() : 0);
+        result = 31 * result + (asegurado != null ? asegurado.hashCode() : 0);
+        result = 31 * result + (aseguradora != null ? aseguradora.hashCode() : 0);
+        result = 31 * result + (vehiculo != null ? vehiculo.hashCode() : 0);
+        result = 31 * result + (observaciones != null ? observaciones.hashCode() : 0);
         return result;
     }
 }

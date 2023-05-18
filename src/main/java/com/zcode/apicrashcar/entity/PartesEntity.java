@@ -3,7 +3,7 @@ package com.zcode.apicrashcar.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "partes", schema = "public", catalog = "BD_CrashCar")
+@Table(name = "partes", schema = "public")
 public class PartesEntity {
     @Basic
     @Column(name = "dni_usuario", nullable = false, length = 9)

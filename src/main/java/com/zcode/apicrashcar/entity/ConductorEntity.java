@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.math.BigInteger;
 
 @Entity
-@Table(name = "conductor", schema = "public", catalog = "BD_CrashCar")
+@Table(name = "conductor", schema = "public")
 public class ConductorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -33,11 +33,11 @@ public class ConductorEntity {
     @Column(name = "pais", nullable = false, length = -1)
     private String pais;
     @Basic
-    @Column(name = "phone", nullable = false)
-    private int phone;
-    @Basic
     @Column(name = "email", nullable = false, length = -1)
     private String email;
+    @Basic
+    @Column(name = "phone", nullable = true, length = -1)
+    private String phone;
 
     public int getIdConductor() {
         return idConductor;
@@ -103,20 +103,20 @@ public class ConductorEntity {
         this.pais = pais;
     }
 
-    public int getPhone() {
-        return phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
@@ -127,7 +127,6 @@ public class ConductorEntity {
         ConductorEntity that = (ConductorEntity) o;
 
         if (idConductor != that.idConductor) return false;
-        if (phone != that.phone) return false;
         if (dniConductor != null ? !dniConductor.equals(that.dniConductor) : that.dniConductor != null) return false;
         if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
         if (apellidos != null ? !apellidos.equals(that.apellidos) : that.apellidos != null) return false;
@@ -136,6 +135,7 @@ public class ConductorEntity {
         if (codpostal != null ? !codpostal.equals(that.codpostal) : that.codpostal != null) return false;
         if (pais != null ? !pais.equals(that.pais) : that.pais != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
 
         return true;
     }
@@ -150,8 +150,8 @@ public class ConductorEntity {
         result = 31 * result + (localidad != null ? localidad.hashCode() : 0);
         result = 31 * result + (codpostal != null ? codpostal.hashCode() : 0);
         result = 31 * result + (pais != null ? pais.hashCode() : 0);
-        result = 31 * result + phone;
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
     }
 }

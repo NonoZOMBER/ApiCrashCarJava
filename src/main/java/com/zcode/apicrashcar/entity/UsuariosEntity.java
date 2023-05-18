@@ -3,9 +3,8 @@ package com.zcode.apicrashcar.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuarios", schema = "public", catalog = "BD_CrashCar")
+@Table(name = "usuarios", schema = "public")
 public class UsuariosEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "dni", nullable = false, length = 9)
     private String dni;
@@ -31,11 +30,11 @@ public class UsuariosEntity {
     @Column(name = "pais", nullable = false, length = -1)
     private String pais;
     @Basic
-    @Column(name = "phone", nullable = false)
-    private int phone;
-    @Basic
     @Column(name = "email", nullable = false, length = -1)
     private String email;
+    @Basic
+    @Column(name = "phone", nullable = true, length = -1)
+    private String phone;
 
     public String getDni() {
         return dni;
@@ -101,20 +100,20 @@ public class UsuariosEntity {
         this.pais = pais;
     }
 
-    public int getPhone() {
-        return phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Override
@@ -125,7 +124,6 @@ public class UsuariosEntity {
         UsuariosEntity that = (UsuariosEntity) o;
 
         if (codpostal != that.codpostal) return false;
-        if (phone != that.phone) return false;
         if (dni != null ? !dni.equals(that.dni) : that.dni != null) return false;
         if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
         if (apellidos != null ? !apellidos.equals(that.apellidos) : that.apellidos != null) return false;
@@ -134,6 +132,7 @@ public class UsuariosEntity {
         if (localidad != null ? !localidad.equals(that.localidad) : that.localidad != null) return false;
         if (pais != null ? !pais.equals(that.pais) : that.pais != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
 
         return true;
     }
@@ -148,8 +147,8 @@ public class UsuariosEntity {
         result = 31 * result + (localidad != null ? localidad.hashCode() : 0);
         result = 31 * result + codpostal;
         result = 31 * result + (pais != null ? pais.hashCode() : 0);
-        result = 31 * result + phone;
         result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
     }
 }

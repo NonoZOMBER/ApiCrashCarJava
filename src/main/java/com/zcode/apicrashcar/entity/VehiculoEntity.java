@@ -3,7 +3,7 @@ package com.zcode.apicrashcar.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "vehiculo", schema = "public", catalog = "BD_CrashCar")
+@Table(name = "vehiculo", schema = "public")
 public class VehiculoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -19,7 +19,7 @@ public class VehiculoEntity {
     @Column(name = "modelo", nullable = false, length = -1)
     private String modelo;
     @Basic
-    @Column(name = "numero_bastidor", nullable = false, length = -1)
+    @Column(name = "numero_bastidor", nullable = true, length = -1)
     private String numeroBastidor;
     @Basic
     @Column(name = "pais_matricula", nullable = false, length = -1)
