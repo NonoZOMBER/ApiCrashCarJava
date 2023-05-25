@@ -24,10 +24,14 @@ public class UpdateItems {
     RepoVehiculoParte vehiculosParte;
     @Autowired
     RepoVehiculoSeguro vehiculosSeguro;
+    @Autowired
+    RepoAsegurado asegurados;
+    @Autowired
+    RepoTestigo testigos;
 
-    @PutMapping("/user/{dni}")
-    ResponseEntity<UsuariosEntity> updateItem(@PathVariable("dni") String dni, @Validated @RequestBody UsuariosEntity item) {
-        if (usuarios.existsById(item.getDni())) {
+    @PutMapping("/user/{id}")
+    ResponseEntity<UsuariosEntity> updateItem(@PathVariable("id") String id, @Validated @RequestBody UsuariosEntity item) {
+        if (usuarios.existsById(id)) {
             usuarios.save(item);
             return ResponseEntity.ok(item);
         } else {
@@ -37,7 +41,7 @@ public class UpdateItems {
 
     @PutMapping("/vehiculo/{id}")
     ResponseEntity<VehiculoEntity> updateItem(@PathVariable("id") Integer id, @Validated @RequestBody VehiculoEntity item) {
-        if (vehiculos.existsById(item.getIdVehiculo())) {
+        if (vehiculos.existsById(id)) {
             vehiculos.save(item);
             return ResponseEntity.ok(item);
         } else {
@@ -47,7 +51,7 @@ public class UpdateItems {
 
     @PutMapping("/vehiculo-seguro/{id}")
     ResponseEntity<VehiculosSeguroEntity> updateItem(@PathVariable("id") Integer id, @Validated @RequestBody VehiculosSeguroEntity item) {
-        if (vehiculosSeguro.existsById(item.getIdVehiculoSeguro())) {
+        if (vehiculosSeguro.existsById(id)) {
             vehiculosSeguro.save(item);
             return ResponseEntity.ok(item);
         } else {
@@ -57,7 +61,7 @@ public class UpdateItems {
 
     @PutMapping("/vehiculo-parte/{id}")
     ResponseEntity<VehiculosParteEntity> updateItem(@PathVariable("id") Integer id, @Validated @RequestBody VehiculosParteEntity item) {
-        if (vehiculosParte.existsById(item.getIdVehiculoParte())) {
+        if (vehiculosParte.existsById(id)) {
             vehiculosParte.save(item);
             return ResponseEntity.ok(item);
         } else {
@@ -67,7 +71,7 @@ public class UpdateItems {
 
     @PutMapping("/conductor/{id}")
     ResponseEntity<ConductorEntity> updateItem(@PathVariable("id") Integer id, @Validated @RequestBody ConductorEntity item) {
-        if (conductores.existsById(item.getIdConductor())) {
+        if (conductores.existsById(id)) {
             conductores.save(item);
             return ResponseEntity.ok(item);
         } else {
@@ -77,7 +81,7 @@ public class UpdateItems {
 
     @PutMapping("/parte/{id}")
     ResponseEntity<PartesEntity> updateItem(@PathVariable("id") Integer id, @Validated @RequestBody PartesEntity item) {
-        if (partes.existsById(item.getIdParte())) {
+        if (partes.existsById(id)) {
             partes.save(item);
             return ResponseEntity.ok(item);
         } else {
@@ -87,8 +91,28 @@ public class UpdateItems {
 
     @PutMapping("/seguro/{id}")
     ResponseEntity<SeguroEntity> updateItem(@PathVariable("id") Integer id, @Validated @RequestBody SeguroEntity item) {
-        if (seguros.existsById(item.getIdSeguro())) {
+        if (seguros.existsById(id)) {
             seguros.save(item);
+            return ResponseEntity.ok(item);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/testigo/{id}")
+    ResponseEntity<TestigosEntity> updateItem(@PathVariable("id") Integer id, @Validated @RequestBody TestigosEntity item) {
+        if (testigos.existsById(id)) {
+            testigos.save(item);
+            return ResponseEntity.ok(item);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/asegurado/{id}")
+    ResponseEntity<AseguradoEntity> updateItem(@PathVariable("id") Integer id, @Validated @RequestBody AseguradoEntity item) {
+        if (asegurados.existsById(id)) {
+            asegurados.save(item);
             return ResponseEntity.ok(item);
         } else {
             return ResponseEntity.notFound().build();

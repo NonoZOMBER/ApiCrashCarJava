@@ -26,11 +26,10 @@ public class NewItems {
     RepoVehiculoParte vehiculosParte;
     @Autowired
     RepoVehiculoSeguro vehiculosSeguro;
-
-    @PostMapping("/user")
-    UsuariosEntity newItem(@Validated @RequestBody UsuariosEntity item) {
-        return usuarios.save(item);
-    }
+    @Autowired
+    RepoAsegurado asegurados;
+    @Autowired
+    RepoTestigo testigos;
 
     @PostMapping("/vehiculo")
     VehiculoEntity newItem(@Validated @RequestBody VehiculoEntity item) {
@@ -61,5 +60,15 @@ public class NewItems {
     @PostMapping("/seguro")
     SeguroEntity newItem(@Validated @RequestBody SeguroEntity item) {
         return seguros.save(item);
+    }
+
+    @PostMapping("/asegurado")
+    AseguradoEntity newItem(@Validated @RequestBody AseguradoEntity item) {
+        return asegurados.save(item);
+    }
+
+    @PostMapping("/testigo")
+    TestigosEntity newItem(@Validated @RequestBody TestigosEntity item) {
+        return testigos.save(item);
     }
 }

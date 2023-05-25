@@ -26,26 +26,26 @@ public class ListsController {
     @Autowired
     RepoVehiculo vehiculos;
 
-    @GetMapping("/vehiculo/{dni}")
-    List<VehiculoEntity> getVehicles(@PathVariable("dni") String dni) {
+    @GetMapping("/vehiculo/{id}")
+    List<VehiculoEntity> getVehicles(@PathVariable("id") String id) {
         Iterable<VehiculoEntity> listVehiculos = vehiculos.findAll();
         ArrayList<VehiculoEntity> listVehiculoById = new ArrayList<>();
 
         for (VehiculoEntity vehiculo : listVehiculos) {
-            if (vehiculo.getDniUsuario().equalsIgnoreCase(dni) && vehiculo.isActivo()) {
+            if (vehiculo.getIdUsuario().equalsIgnoreCase(id) && vehiculo.getActivo()) {
                 listVehiculoById.add(vehiculo);
             }
         }
         return listVehiculoById;
     }
 
-    @GetMapping("/partes/{dni}")
-    List<PartesEntity> getParts(@PathVariable("dni") String dni) {
+    @GetMapping("/partes/{id}")
+    List<PartesEntity> getParts(@PathVariable("id") String id) {
         Iterable<PartesEntity> listPartes = partes.findAll();
         ArrayList<PartesEntity> listPartesById = new ArrayList<>();
 
         for (PartesEntity parte : listPartes) {
-            if (parte.getDniUsuario().equalsIgnoreCase(dni) && parte.isActivo()) {
+            if (parte.getIdUsuario().equalsIgnoreCase(id) && parte.getActivo()) {
                 listPartesById.add(parte);
             }
         }
@@ -53,13 +53,13 @@ public class ListsController {
     }
 
 
-    @GetMapping("/seguros/{dni}")
-    List<SeguroEntity> getSecures(@PathVariable("dni") String dni) {
+    @GetMapping("/seguros/{id}")
+    List<SeguroEntity> getSecures(@PathVariable("id") String id) {
         Iterable<SeguroEntity> listSeguro = seguros.findAll();
         ArrayList<SeguroEntity> listSeguroById = new ArrayList<>();
 
         for (SeguroEntity seguro : listSeguro) {
-            if (seguro.getDniUsuario().equalsIgnoreCase(dni) && seguro.isActivo()) {
+            if (seguro.getIdUsuario().equalsIgnoreCase(id) && seguro.getActivo()) {
                 listSeguroById.add(seguro);
             }
         }

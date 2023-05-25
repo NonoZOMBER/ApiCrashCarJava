@@ -1,47 +1,60 @@
 package com.zcode.apicrashcar.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
-@Table(name = "usuarios", schema = "public")
+@Table(name = "usuarios", schema = "public", catalog = "BD_CrashCar")
 public class UsuariosEntity {
+
     @Id
-    @Column(name = "dni", nullable = false, length = 9)
-    private String dni;
+    @Column(name = "id", nullable = false, length = -1)
+    private String id;
     @Basic
-    @Column(name = "nombre", nullable = false, length = -1)
+    @Column(name = "nombre", nullable = true, length = -1)
     private String nombre;
     @Basic
-    @Column(name = "apellidos", nullable = false, length = -1)
+    @Column(name = "apellidos", nullable = true, length = -1)
     private String apellidos;
     @Basic
-    @Column(name = "password", nullable = false, length = -1)
+    @Column(name = "password", nullable = true, length = -1)
     private String password;
-    @Basic
-    @Column(name = "direccion", nullable = false, length = -1)
-    private String direccion;
-    @Basic
-    @Column(name = "localidad", nullable = false, length = -1)
-    private String localidad;
-    @Basic
-    @Column(name = "codpostal", nullable = false, precision = 0)
-    private int codpostal;
-    @Basic
-    @Column(name = "pais", nullable = false, length = -1)
-    private String pais;
     @Basic
     @Column(name = "email", nullable = false, length = -1)
     private String email;
     @Basic
-    @Column(name = "phone", nullable = true, length = -1)
-    private String phone;
+    @Column(name = "direccion", nullable = true, length = -1)
+    private String direccion;
+    @Basic
+    @Column(name = "localidad", nullable = true, length = -1)
+    private String localidad;
+    @Basic
+    @Column(name = "provincia", nullable = true, length = -1)
+    private String provincia;
+    @Basic
+    @Column(name = "codpostal", nullable = true, length = -1)
+    private String codpostal;
+    @Basic
+    @Column(name = "pais", nullable = true, length = -1)
+    private String pais;
+    @Basic
+    @Column(name = "telefono", nullable = true, length = -1)
+    private String telefono;
+    @Basic
+    @Column(name = "tipologin", nullable = false)
+    private int tipologin;
+    @OneToMany(mappedBy = "usuariosByIdUsuario")
+    @JsonIgnore
+    private Collection<SeguroEntity> segurosById;
 
-    public String getDni() {
-        return dni;
+    public String getId() {
+        return id;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -68,6 +81,14 @@ public class UsuariosEntity {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getDireccion() {
         return direccion;
     }
@@ -84,11 +105,19 @@ public class UsuariosEntity {
         this.localidad = localidad;
     }
 
-    public int getCodpostal() {
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public String getCodpostal() {
         return codpostal;
     }
 
-    public void setCodpostal(int codpostal) {
+    public void setCodpostal(String codpostal) {
         this.codpostal = codpostal;
     }
 
@@ -100,20 +129,20 @@ public class UsuariosEntity {
         this.pais = pais;
     }
 
-    public String getEmail() {
-        return email;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getPhone() {
-        return phone;
+    public int getTipologin() {
+        return tipologin;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setTipologin(int tipologin) {
+        this.tipologin = tipologin;
     }
 
     @Override
@@ -123,32 +152,44 @@ public class UsuariosEntity {
 
         UsuariosEntity that = (UsuariosEntity) o;
 
-        if (codpostal != that.codpostal) return false;
-        if (dni != null ? !dni.equals(that.dni) : that.dni != null) return false;
+        if (tipologin != that.tipologin) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
         if (apellidos != null ? !apellidos.equals(that.apellidos) : that.apellidos != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (direccion != null ? !direccion.equals(that.direccion) : that.direccion != null) return false;
         if (localidad != null ? !localidad.equals(that.localidad) : that.localidad != null) return false;
+        if (provincia != null ? !provincia.equals(that.provincia) : that.provincia != null) return false;
+        if (codpostal != null ? !codpostal.equals(that.codpostal) : that.codpostal != null) return false;
         if (pais != null ? !pais.equals(that.pais) : that.pais != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
+        if (telefono != null ? !telefono.equals(that.telefono) : that.telefono != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = dni != null ? dni.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
         result = 31 * result + (apellidos != null ? apellidos.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (direccion != null ? direccion.hashCode() : 0);
         result = 31 * result + (localidad != null ? localidad.hashCode() : 0);
-        result = 31 * result + codpostal;
+        result = 31 * result + (provincia != null ? provincia.hashCode() : 0);
+        result = 31 * result + (codpostal != null ? codpostal.hashCode() : 0);
         result = 31 * result + (pais != null ? pais.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
+        result = 31 * result + tipologin;
         return result;
+    }
+
+    public Collection<SeguroEntity> getSegurosById() {
+        return segurosById;
+    }
+
+    public void setSegurosById(Collection<SeguroEntity> segurosById) {
+        this.segurosById = segurosById;
     }
 }

@@ -3,43 +3,41 @@ package com.zcode.apicrashcar.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "vehiculo", schema = "public")
+@Table(name = "vehiculo", schema = "public", catalog = "BD_CrashCar")
 public class VehiculoEntity {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id_vehiculo", nullable = false)
-    private int idVehiculo;
+    @Column(name = "id", nullable = false)
+    private int id;
     @Basic
-    @Column(name = "matricula", nullable = false, length = -1)
+    @Column(name = "matricula", nullable = true, length = -1)
     private String matricula;
     @Basic
-    @Column(name = "marca", nullable = false, length = -1)
+    @Column(name = "marca", nullable = true, length = -1)
     private String marca;
     @Basic
-    @Column(name = "modelo", nullable = false, length = -1)
+    @Column(name = "modelo", nullable = true, length = -1)
     private String modelo;
     @Basic
-    @Column(name = "numero_bastidor", nullable = true, length = -1)
-    private String numeroBastidor;
-    @Basic
-    @Column(name = "pais_matricula", nullable = false, length = -1)
+    @Column(name = "pais_matricula", nullable = true, length = -1)
     private String paisMatricula;
     @Basic
-    @Column(name = "tipo_vehiculo", nullable = false, length = -1)
+    @Column(name = "tipo_vehiculo", nullable = true, length = -1)
     private String tipoVehiculo;
     @Basic
-    @Column(name = "activo", nullable = false)
-    private boolean activo;
+    @Column(name = "activo", nullable = true)
+    private Boolean activo;
     @Basic
-    @Column(name = "dni_usuario", nullable = false, length = 9)
-    private String dniUsuario;
+    @Column(name = "id_usuario", nullable = false, length = -1)
+    private String idUsuario;
 
-    public int getIdVehiculo() {
-        return idVehiculo;
+    public int getId() {
+        return id;
     }
 
-    public void setIdVehiculo(int idVehiculo) {
-        this.idVehiculo = idVehiculo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMatricula() {
@@ -66,14 +64,6 @@ public class VehiculoEntity {
         this.modelo = modelo;
     }
 
-    public String getNumeroBastidor() {
-        return numeroBastidor;
-    }
-
-    public void setNumeroBastidor(String numeroBastidor) {
-        this.numeroBastidor = numeroBastidor;
-    }
-
     public String getPaisMatricula() {
         return paisMatricula;
     }
@@ -90,20 +80,20 @@ public class VehiculoEntity {
         this.tipoVehiculo = tipoVehiculo;
     }
 
-    public boolean isActivo() {
+    public Boolean getActivo() {
         return activo;
     }
 
-    public void setActivo(boolean activo) {
+    public void setActivo(Boolean activo) {
         this.activo = activo;
     }
 
-    public String getDniUsuario() {
-        return dniUsuario;
+    public String getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setDniUsuario(String dniUsuario) {
-        this.dniUsuario = dniUsuario;
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override
@@ -113,32 +103,29 @@ public class VehiculoEntity {
 
         VehiculoEntity that = (VehiculoEntity) o;
 
-        if (idVehiculo != that.idVehiculo) return false;
-        if (activo != that.activo) return false;
+        if (id != that.id) return false;
         if (matricula != null ? !matricula.equals(that.matricula) : that.matricula != null) return false;
         if (marca != null ? !marca.equals(that.marca) : that.marca != null) return false;
         if (modelo != null ? !modelo.equals(that.modelo) : that.modelo != null) return false;
-        if (numeroBastidor != null ? !numeroBastidor.equals(that.numeroBastidor) : that.numeroBastidor != null)
-            return false;
         if (paisMatricula != null ? !paisMatricula.equals(that.paisMatricula) : that.paisMatricula != null)
             return false;
         if (tipoVehiculo != null ? !tipoVehiculo.equals(that.tipoVehiculo) : that.tipoVehiculo != null) return false;
-        if (dniUsuario != null ? !dniUsuario.equals(that.dniUsuario) : that.dniUsuario != null) return false;
+        if (activo != null ? !activo.equals(that.activo) : that.activo != null) return false;
+        if (idUsuario != null ? !idUsuario.equals(that.idUsuario) : that.idUsuario != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idVehiculo;
+        int result = id;
         result = 31 * result + (matricula != null ? matricula.hashCode() : 0);
         result = 31 * result + (marca != null ? marca.hashCode() : 0);
         result = 31 * result + (modelo != null ? modelo.hashCode() : 0);
-        result = 31 * result + (numeroBastidor != null ? numeroBastidor.hashCode() : 0);
         result = 31 * result + (paisMatricula != null ? paisMatricula.hashCode() : 0);
         result = 31 * result + (tipoVehiculo != null ? tipoVehiculo.hashCode() : 0);
-        result = 31 * result + (activo ? 1 : 0);
-        result = 31 * result + (dniUsuario != null ? dniUsuario.hashCode() : 0);
+        result = 31 * result + (activo != null ? activo.hashCode() : 0);
+        result = 31 * result + (idUsuario != null ? idUsuario.hashCode() : 0);
         return result;
     }
 }

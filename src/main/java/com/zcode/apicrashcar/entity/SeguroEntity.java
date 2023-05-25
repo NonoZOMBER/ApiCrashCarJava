@@ -1,5 +1,6 @@
 package com.zcode.apicrashcar.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,69 +8,102 @@ import jakarta.persistence.*;
 public class SeguroEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id_seguro", nullable = false)
-    private int idSeguro;
+    @Column(name = "id", nullable = false)
+    private int id;
     @Basic
-    @Column(name = "dni_usuario", nullable = false, length = 9)
-    private String dniUsuario;
+    @Column(name = "nombre", nullable = true, length = -1)
+    private String nombre;
     @Basic
-    @Column(name = "nombre_agencia", nullable = false, length = -1)
-    private String nombreAgencia;
+    @Column(name = "email", nullable = true, length = -1)
+    private String email;
     @Basic
-    @Column(name = "nombre_aseguradora", nullable = false, length = -1)
-    private String nombreAseguradora;
+    @Column(name = "direccion", nullable = true, length = -1)
+    private String direccion;
+    @Basic
+    @Column(name = "pais", nullable = true, length = -1)
+    private String pais;
+    @Basic
+    @Column(name = "telefono", nullable = true, length = -1)
+    private String telefono;
+    @Basic
+    @Column(name = "activo", nullable = true)
+    private Boolean activo;
+    @Basic
+    @Column(name = "id_usuario", nullable = true, length = -1)
+    private String idUsuario;
     @Basic
     @Column(name = "ids_vehiculos_seguro", nullable = true, length = -1)
     private String idsVehiculosSeguro;
     @Basic
     @Column(name = "ids_conductores_seguro", nullable = true, length = -1)
     private String idsConductoresSeguro;
-    @Basic
-    @Column(name = "direccion_agencia", nullable = true, length = -1)
-    private String direccionAgencia;
-    @Basic
-    @Column(name = "email_agencia", nullable = false, length = -1)
-    private String emailAgencia;
-    @Basic
-    @Column(name = "pais_agencia", nullable = true, length = -1)
-    private String paisAgencia;
-    @Basic
-    @Column(name = "phone_agencia", nullable = false, length = -1)
-    private String phoneAgencia;
-    @Basic
-    @Column(name = "activo", nullable = false)
-    private boolean activo;
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
+    private UsuariosEntity usuariosByIdUsuario;
 
-    public int getIdSeguro() {
-        return idSeguro;
+    public int getId() {
+        return id;
     }
 
-    public void setIdSeguro(int idSeguro) {
-        this.idSeguro = idSeguro;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getDniUsuario() {
-        return dniUsuario;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDniUsuario(String dniUsuario) {
-        this.dniUsuario = dniUsuario;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getNombreAgencia() {
-        return nombreAgencia;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNombreAgencia(String nombreAgencia) {
-        this.nombreAgencia = nombreAgencia;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getNombreAseguradora() {
-        return nombreAseguradora;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setNombreAseguradora(String nombreAseguradora) {
-        this.nombreAseguradora = nombreAseguradora;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getIdsVehiculosSeguro() {
@@ -88,46 +122,6 @@ public class SeguroEntity {
         this.idsConductoresSeguro = idsConductoresSeguro;
     }
 
-    public String getDireccionAgencia() {
-        return direccionAgencia;
-    }
-
-    public void setDireccionAgencia(String direccionAgencia) {
-        this.direccionAgencia = direccionAgencia;
-    }
-
-    public String getEmailAgencia() {
-        return emailAgencia;
-    }
-
-    public void setEmailAgencia(String emailAgencia) {
-        this.emailAgencia = emailAgencia;
-    }
-
-    public String getPaisAgencia() {
-        return paisAgencia;
-    }
-
-    public void setPaisAgencia(String paisAgencia) {
-        this.paisAgencia = paisAgencia;
-    }
-
-    public String getPhoneAgencia() {
-        return phoneAgencia;
-    }
-
-    public void setPhoneAgencia(String phoneAgencia) {
-        this.phoneAgencia = phoneAgencia;
-    }
-
-    public boolean isActivo() {
-        return activo;
-    }
-
-    public void setActivo(boolean activo) {
-        this.activo = activo;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -135,39 +129,42 @@ public class SeguroEntity {
 
         SeguroEntity that = (SeguroEntity) o;
 
-        if (idSeguro != that.idSeguro) return false;
-        if (activo != that.activo) return false;
-        if (dniUsuario != null ? !dniUsuario.equals(that.dniUsuario) : that.dniUsuario != null) return false;
-        if (nombreAgencia != null ? !nombreAgencia.equals(that.nombreAgencia) : that.nombreAgencia != null)
-            return false;
-        if (nombreAseguradora != null ? !nombreAseguradora.equals(that.nombreAseguradora) : that.nombreAseguradora != null)
-            return false;
+        if (id != that.id) return false;
+        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
+        if (email != null ? !email.equals(that.email) : that.email != null) return false;
+        if (direccion != null ? !direccion.equals(that.direccion) : that.direccion != null) return false;
+        if (pais != null ? !pais.equals(that.pais) : that.pais != null) return false;
+        if (telefono != null ? !telefono.equals(that.telefono) : that.telefono != null) return false;
+        if (activo != null ? !activo.equals(that.activo) : that.activo != null) return false;
+        if (idUsuario != null ? !idUsuario.equals(that.idUsuario) : that.idUsuario != null) return false;
         if (idsVehiculosSeguro != null ? !idsVehiculosSeguro.equals(that.idsVehiculosSeguro) : that.idsVehiculosSeguro != null)
             return false;
         if (idsConductoresSeguro != null ? !idsConductoresSeguro.equals(that.idsConductoresSeguro) : that.idsConductoresSeguro != null)
             return false;
-        if (direccionAgencia != null ? !direccionAgencia.equals(that.direccionAgencia) : that.direccionAgencia != null)
-            return false;
-        if (emailAgencia != null ? !emailAgencia.equals(that.emailAgencia) : that.emailAgencia != null) return false;
-        if (paisAgencia != null ? !paisAgencia.equals(that.paisAgencia) : that.paisAgencia != null) return false;
-        if (phoneAgencia != null ? !phoneAgencia.equals(that.phoneAgencia) : that.phoneAgencia != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idSeguro;
-        result = 31 * result + (dniUsuario != null ? dniUsuario.hashCode() : 0);
-        result = 31 * result + (nombreAgencia != null ? nombreAgencia.hashCode() : 0);
-        result = 31 * result + (nombreAseguradora != null ? nombreAseguradora.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (direccion != null ? direccion.hashCode() : 0);
+        result = 31 * result + (pais != null ? pais.hashCode() : 0);
+        result = 31 * result + (telefono != null ? telefono.hashCode() : 0);
+        result = 31 * result + (activo != null ? activo.hashCode() : 0);
+        result = 31 * result + (idUsuario != null ? idUsuario.hashCode() : 0);
         result = 31 * result + (idsVehiculosSeguro != null ? idsVehiculosSeguro.hashCode() : 0);
         result = 31 * result + (idsConductoresSeguro != null ? idsConductoresSeguro.hashCode() : 0);
-        result = 31 * result + (direccionAgencia != null ? direccionAgencia.hashCode() : 0);
-        result = 31 * result + (emailAgencia != null ? emailAgencia.hashCode() : 0);
-        result = 31 * result + (paisAgencia != null ? paisAgencia.hashCode() : 0);
-        result = 31 * result + (phoneAgencia != null ? phoneAgencia.hashCode() : 0);
-        result = 31 * result + (activo ? 1 : 0);
         return result;
+    }
+
+    public UsuariosEntity getUsuariosByIdUsuario() {
+        return usuariosByIdUsuario;
+    }
+
+    public void setUsuariosByIdUsuario(UsuariosEntity usuariosByIdUsuario) {
+        this.usuariosByIdUsuario = usuariosByIdUsuario;
     }
 }

@@ -15,6 +15,15 @@
       <mapping class="com.zcode.apicrashcar.entity.VehiculoEntity"/>
       <mapping class="com.zcode.apicrashcar.entity.VehiculosParteEntity"/>
       <mapping class="com.zcode.apicrashcar.entity.VehiculosSeguroEntity"/>
+      <mapping class="com.zcode.apicrashcar.entity.AseguradoEntity"/>
+      <mapping class="com.zcode.apicrashcar.entity.ConductorEntity"/>
+      <mapping class="com.zcode.apicrashcar.entity.PartesEntity"/>
+      <mapping class="com.zcode.apicrashcar.entity.SeguroEntity"/>
+      <mapping class="com.zcode.apicrashcar.entity.TestigosEntity"/>
+      <mapping class="com.zcode.apicrashcar.entity.UsuariosEntity"/>
+      <mapping class="com.zcode.apicrashcar.entity.VehiculoEntity"/>
+      <mapping class="com.zcode.apicrashcar.entity.VehiculosParteEntity"/>
+      <mapping class="com.zcode.apicrashcar.entity.VehiculosSeguroEntity"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

@@ -28,6 +28,10 @@ public class ItemByControler {
     RepoVehiculoParte vehiculosParte;
     @Autowired
     RepoVehiculoSeguro vehiculosSeguro;
+    @Autowired
+    RepoAsegurado asegurados;
+    @Autowired
+    RepoTestigo testigos;
 
     @GetMapping("/user/{dni}")
     ResponseEntity<UsuariosEntity> getUser(@PathVariable(value = "dni") String dni) {
@@ -72,6 +76,16 @@ public class ItemByControler {
     }
 
 
+    @GetMapping("/testigo/{id}")
+    ResponseEntity<TestigosEntity> getTestigo(@PathVariable("id") Integer id) {
+        Optional<TestigosEntity> testigo = testigos.findById(id);
+        return testigo.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
+    @GetMapping("/asegurado/{id}")
+    ResponseEntity<AseguradoEntity> getAsegurado(@PathVariable("id") Integer id) {
+        Optional<AseguradoEntity> asegurado = asegurados.findById(id);
+        return asegurado.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
 }

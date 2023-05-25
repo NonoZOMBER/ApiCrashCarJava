@@ -3,12 +3,12 @@ package com.zcode.apicrashcar.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "vehiculos_seguro", schema = "public")
+@Table(name = "vehiculos_seguro", schema = "public", catalog = "BD_CrashCar")
 public class VehiculosSeguroEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "id_vehiculo_seguro", nullable = false)
-    private int idVehiculoSeguro;
+    @Column(name = "id", nullable = false)
+    private int id;
     @Basic
     @Column(name = "id_vehiculo", nullable = false)
     private int idVehiculo;
@@ -19,18 +19,18 @@ public class VehiculosSeguroEntity {
     @Column(name = "numero_carta_verde", nullable = true, length = -1)
     private String numeroCartaVerde;
     @Basic
-    @Column(name = "fecha_carta_verde_inicio", nullable = true, length = -1)
-    private String fechaCartaVerdeInicio;
+    @Column(name = "fecha_inicio_cv", nullable = true, length = -1)
+    private String fechaInicioCv;
     @Basic
-    @Column(name = "fecha_carta_verde_fin", nullable = true, length = -1)
-    private String fechaCartaVerdeFin;
+    @Column(name = "fecha_fin_cv", nullable = true, length = -1)
+    private String fechaFinCv;
 
-    public int getIdVehiculoSeguro() {
-        return idVehiculoSeguro;
+    public int getId() {
+        return id;
     }
 
-    public void setIdVehiculoSeguro(int idVehiculoSeguro) {
-        this.idVehiculoSeguro = idVehiculoSeguro;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdVehiculo() {
@@ -57,20 +57,20 @@ public class VehiculosSeguroEntity {
         this.numeroCartaVerde = numeroCartaVerde;
     }
 
-    public String getFechaCartaVerdeInicio() {
-        return fechaCartaVerdeInicio;
+    public String getFechaInicioCv() {
+        return fechaInicioCv;
     }
 
-    public void setFechaCartaVerdeInicio(String fechaCartaVerdeInicio) {
-        this.fechaCartaVerdeInicio = fechaCartaVerdeInicio;
+    public void setFechaInicioCv(String fechaInicioCv) {
+        this.fechaInicioCv = fechaInicioCv;
     }
 
-    public String getFechaCartaVerdeFin() {
-        return fechaCartaVerdeFin;
+    public String getFechaFinCv() {
+        return fechaFinCv;
     }
 
-    public void setFechaCartaVerdeFin(String fechaCartaVerdeFin) {
-        this.fechaCartaVerdeFin = fechaCartaVerdeFin;
+    public void setFechaFinCv(String fechaFinCv) {
+        this.fechaFinCv = fechaFinCv;
     }
 
     @Override
@@ -80,27 +80,26 @@ public class VehiculosSeguroEntity {
 
         VehiculosSeguroEntity that = (VehiculosSeguroEntity) o;
 
-        if (idVehiculoSeguro != that.idVehiculoSeguro) return false;
+        if (id != that.id) return false;
         if (idVehiculo != that.idVehiculo) return false;
         if (numeroPoliza != null ? !numeroPoliza.equals(that.numeroPoliza) : that.numeroPoliza != null) return false;
         if (numeroCartaVerde != null ? !numeroCartaVerde.equals(that.numeroCartaVerde) : that.numeroCartaVerde != null)
             return false;
-        if (fechaCartaVerdeInicio != null ? !fechaCartaVerdeInicio.equals(that.fechaCartaVerdeInicio) : that.fechaCartaVerdeInicio != null)
+        if (fechaInicioCv != null ? !fechaInicioCv.equals(that.fechaInicioCv) : that.fechaInicioCv != null)
             return false;
-        if (fechaCartaVerdeFin != null ? !fechaCartaVerdeFin.equals(that.fechaCartaVerdeFin) : that.fechaCartaVerdeFin != null)
-            return false;
+        if (fechaFinCv != null ? !fechaFinCv.equals(that.fechaFinCv) : that.fechaFinCv != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = idVehiculoSeguro;
+        int result = id;
         result = 31 * result + idVehiculo;
         result = 31 * result + (numeroPoliza != null ? numeroPoliza.hashCode() : 0);
         result = 31 * result + (numeroCartaVerde != null ? numeroCartaVerde.hashCode() : 0);
-        result = 31 * result + (fechaCartaVerdeInicio != null ? fechaCartaVerdeInicio.hashCode() : 0);
-        result = 31 * result + (fechaCartaVerdeFin != null ? fechaCartaVerdeFin.hashCode() : 0);
+        result = 31 * result + (fechaInicioCv != null ? fechaInicioCv.hashCode() : 0);
+        result = 31 * result + (fechaFinCv != null ? fechaFinCv.hashCode() : 0);
         return result;
     }
 }
