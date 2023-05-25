@@ -1,9 +1,5 @@
 # ApiCrashCar
 
-<p align="center">
-<img src="https://alegrucoding.com/wp-content/uploads/2021/10/spring_boot.png">
-</p>
-
 <p align="end">
 ApiCrashCar - Java - SpringBoot - Hibernate
 </p>
