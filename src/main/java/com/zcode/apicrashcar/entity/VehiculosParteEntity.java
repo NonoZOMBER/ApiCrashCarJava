@@ -3,7 +3,7 @@ package com.zcode.apicrashcar.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "vehiculos_parte", schema = "public", catalog = "BD_CrashCar")
+@Table(name = "vehiculos_parte", schema = "public")
 public class VehiculosParteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -33,6 +33,24 @@ public class VehiculosParteEntity {
     @Basic
     @Column(name = "firma", nullable = true, length = -1)
     private String firma;
+    @Basic
+    @Column(name = "remolque", nullable = true)
+    private Boolean remolque;
+    @Basic
+    @Column(name = "matricula_remolque", nullable = true, length = -1)
+    private String matriculaRemolque;
+    @Basic
+    @Column(name = "pais_matricula_remolque", nullable = true, length = -1)
+    private String paisMatriculaRemolque;
+    @Basic
+    @Column(name = "numero_permiso_conducir", nullable = true, length = -1)
+    private String numeroPermisoConducir;
+    @Basic
+    @Column(name = "categoria_permiso_conducir", nullable = true, length = -1)
+    private String categoriaPermisoConducir;
+    @Basic
+    @Column(name = "fecha_validez_permiso_conducir", nullable = true, length = -1)
+    private String fechaValidezPermisoConducir;
 
     public int getId() {
         return id;
@@ -106,6 +124,54 @@ public class VehiculosParteEntity {
         this.firma = firma;
     }
 
+    public Boolean getRemolque() {
+        return remolque;
+    }
+
+    public void setRemolque(Boolean remolque) {
+        this.remolque = remolque;
+    }
+
+    public String getMatriculaRemolque() {
+        return matriculaRemolque;
+    }
+
+    public void setMatriculaRemolque(String matriculaRemolque) {
+        this.matriculaRemolque = matriculaRemolque;
+    }
+
+    public String getPaisMatriculaRemolque() {
+        return paisMatriculaRemolque;
+    }
+
+    public void setPaisMatriculaRemolque(String paisMatriculaRemolque) {
+        this.paisMatriculaRemolque = paisMatriculaRemolque;
+    }
+
+    public String getNumeroPermisoConducir() {
+        return numeroPermisoConducir;
+    }
+
+    public void setNumeroPermisoConducir(String numeroPermisoConducir) {
+        this.numeroPermisoConducir = numeroPermisoConducir;
+    }
+
+    public String getCategoriaPermisoConducir() {
+        return categoriaPermisoConducir;
+    }
+
+    public void setCategoriaPermisoConducir(String categoriaPermisoConducir) {
+        this.categoriaPermisoConducir = categoriaPermisoConducir;
+    }
+
+    public String getFechaValidezPermisoConducir() {
+        return fechaValidezPermisoConducir;
+    }
+
+    public void setFechaValidezPermisoConducir(String fechaValidezPermisoConducir) {
+        this.fechaValidezPermisoConducir = fechaValidezPermisoConducir;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,6 +190,17 @@ public class VehiculosParteEntity {
         if (circunstancias != null ? !circunstancias.equals(that.circunstancias) : that.circunstancias != null)
             return false;
         if (firma != null ? !firma.equals(that.firma) : that.firma != null) return false;
+        if (remolque != null ? !remolque.equals(that.remolque) : that.remolque != null) return false;
+        if (matriculaRemolque != null ? !matriculaRemolque.equals(that.matriculaRemolque) : that.matriculaRemolque != null)
+            return false;
+        if (paisMatriculaRemolque != null ? !paisMatriculaRemolque.equals(that.paisMatriculaRemolque) : that.paisMatriculaRemolque != null)
+            return false;
+        if (numeroPermisoConducir != null ? !numeroPermisoConducir.equals(that.numeroPermisoConducir) : that.numeroPermisoConducir != null)
+            return false;
+        if (categoriaPermisoConducir != null ? !categoriaPermisoConducir.equals(that.categoriaPermisoConducir) : that.categoriaPermisoConducir != null)
+            return false;
+        if (fechaValidezPermisoConducir != null ? !fechaValidezPermisoConducir.equals(that.fechaValidezPermisoConducir) : that.fechaValidezPermisoConducir != null)
+            return false;
 
         return true;
     }
@@ -139,6 +216,12 @@ public class VehiculosParteEntity {
         result = 31 * result + (observaciones != null ? observaciones.hashCode() : 0);
         result = 31 * result + (circunstancias != null ? circunstancias.hashCode() : 0);
         result = 31 * result + (firma != null ? firma.hashCode() : 0);
+        result = 31 * result + (remolque != null ? remolque.hashCode() : 0);
+        result = 31 * result + (matriculaRemolque != null ? matriculaRemolque.hashCode() : 0);
+        result = 31 * result + (paisMatriculaRemolque != null ? paisMatriculaRemolque.hashCode() : 0);
+        result = 31 * result + (numeroPermisoConducir != null ? numeroPermisoConducir.hashCode() : 0);
+        result = 31 * result + (categoriaPermisoConducir != null ? categoriaPermisoConducir.hashCode() : 0);
+        result = 31 * result + (fechaValidezPermisoConducir != null ? fechaValidezPermisoConducir.hashCode() : 0);
         return result;
     }
 }
